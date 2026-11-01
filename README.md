@@ -42,8 +42,6 @@ ZipImporter is an Editor plugin and must be compiled for the Unreal Engine versi
 7. Open **Edit → Plugins**, search for `ZipImporter`, and enable it.
 8. Restart the editor if prompted.
 
-![ZipImporter enabled in the Plugins window](images/plugin_enabled.png)
-
 Make sure that `ZipImporter.uplugin` is located directly inside `YourProject/Plugins/ZipImporter/`.
 
 ## Using the Plugin
