@@ -42,8 +42,6 @@ ZipImporter является редакторским плагином. Его �
 7. Перейдите в **Edit → Plugins**, найдите `ZipImporter` и включите плагин.
 8. Перезапустите редактор, если он предложит это сделать.
 
-![ZipImporter включён в окне Plugins](images/plugin_enabled.png)
-
 Убедитесь, что файл `ZipImporter.uplugin` находится непосредственно в папке `YourProject/Plugins/ZipImporter/`.
 
 ## Использование плагина
