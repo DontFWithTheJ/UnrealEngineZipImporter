@@ -1,6 +1,10 @@
 # ZipImporter
 
-Import assets from ZIP archives directly into the Unreal Engine Content Browser. ZipImporter extracts the archive and sends its files through Unreal Engine's regular asset import system, keeping the folder structure from the archive.
+Import ZIP archives into Unreal Engine's Content Browser. Preserve folder structure, process nested ZIP archives, and reimport assets from the original archive.
+
+ZipImporter brings ZIP archive import directly into Unreal Engine's Content Browser. Drag an archive into the destination folder or choose it through the standard Import button. The plugin extracts its contents and sends the files through Unreal Engine's regular asset import system, preserving the folder structure. ZIP archives inside other ZIP archives are processed recursively. Imported assets retain information about their source archive and can be reimported through Unreal Engine's standard Reimport action while the original archive remains available. Supported file types depend on the importers available in the project. ZIP is the only supported archive format; RAR, 7z, and TAR are not supported.
+
+**Documentation:** [Open the documentation site](https://dontfwiththej.github.io/UnrealEngineZipImporter/)
 
 ## Contents
 
