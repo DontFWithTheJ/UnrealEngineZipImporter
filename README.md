@@ -1,4 +1,4 @@
-# ZipImporter
+# ZIP Importer
 
 Import ZIP archives into Unreal Engine's Content Browser. Preserve folder structure, process nested ZIP archives, and reimport assets from the original archive.
 
@@ -44,6 +44,17 @@ ZipImporter is an Editor plugin and must be compiled for the Unreal Engine versi
 Make sure that `ZipImporter.uplugin` is located directly inside `YourProject/Plugins/ZipImporter/`.
 
 ## Using the Plugin
+
+### Enable the Plugin
+
+After installing ZipImporter, open your project and:
+
+1. Select **Edit → Plugins** from the Unreal Editor menu.
+2. Search for **ZipImporter**.
+3. Enable the plugin.
+4. Restart the editor if prompted.
+
+![ZipImporter enabled in the Plugins window](images/plugin_enabled.png)
 
 ### Importing an Archive with Drag and Drop
 
