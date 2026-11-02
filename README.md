@@ -6,6 +6,16 @@ ZipImporter brings ZIP archive import directly into Unreal Engine's Content Brow
 
 **Available on [Fab](https://www.fab.com/).**
 
+## Contents
+
+- [Features](#features)
+- [Installing from Source](#installing-from-source)
+- [Using the Plugin](#using-the-plugin)
+- [Limitations](#limitations)
+- [Building from Source](#building-from-source)
+
+---
+
 ## Features
 
 - **Import ZIP archives into the Content Browser.** Drop a ZIP archive onto the destination folder, or use the Content Browser's regular **Import** button.
@@ -14,6 +24,24 @@ ZipImporter brings ZIP archive import directly into Unreal Engine's Content Brow
 - **Use Unreal Engine's import pipeline.** Files are imported using the asset importers available in the project. Supported file types therefore depend on Unreal Engine and the importers installed in the project.
 - **Reimport from the original archive.** Imported assets keep information about their source archive and their path inside it, allowing them to be reimported through Unreal Engine's standard reimport action.
 
+## Installing from Source
+
+ZipImporter is distributed with its source code. To use it in a project, add the plugin folder to the project's `Plugins` directory.
+
+1. Close Unreal Engine.
+2. Open your project directory and create a `Plugins` folder if it does not exist.
+3. Clone the repository into the plugin directory:
+
+   ```bash
+   git clone https://github.com/DontFWithTheJ/UnrealEngineZipImporter.git YourProject/Plugins/ZipImporter
+   ```
+
+4. Make sure `ZipImporter.uplugin` is located directly inside `YourProject/Plugins/ZipImporter/`.
+5. Generate or refresh the project files if required by your IDE.
+6. Build your project's **Development Editor** target for your platform.
+7. Open the project in Unreal Engine.
+
+After building, enable the plugin through **Edit → Plugins**. The steps are described in [Enable the Plugin](#enable-the-plugin).
 ## Using the Plugin
 
 ### Enable the Plugin
@@ -86,3 +114,54 @@ The importer allows replacement of existing assets. Be careful when importing an
 - Nested ZIP processing is limited to 8 archive levels.
 - An archive can contain up to 10,000 files, and an individual extracted file cannot exceed 512 MB.
 - The original ZIP archive must remain accessible if you want to reimport assets later.
+
+## Building from Source
+
+This section explains how to build the plugin in a project and package it for a specific Unreal Engine version. ZipImporter is an Editor plugin and is not intended to be included in a packaged game.
+
+### Building in an Unreal Engine Project
+
+1. Close Unreal Engine.
+2. Place the `ZipImporter` folder in the project's `Plugins` directory.
+3. Make sure the descriptor is located at `YourProject/Plugins/ZipImporter/ZipImporter.uplugin`.
+4. Generate or refresh the project files if required by your IDE.
+5. Open the project files in your C++ IDE.
+6. Build the **Development Editor** target for the required platform, for example **Win64**.
+7. Launch the project. Enable the plugin through **Edit → Plugins** if necessary.
+
+Use this workflow for development, debugging, and testing plugin changes directly in a project.
+
+### Packaging for an Unreal Engine Version with Unreal Automation Tool
+
+To create a standalone plugin package for a specific engine version, use `BuildPlugin` from the Unreal Automation Tool included with that engine version.
+
+On Windows, open Command Prompt and run the following command, replacing the paths with your own:
+
+```bat
+"C:\Path\To\UnrealEngine\Engine\Build\BatchFiles\RunUAT.bat" BuildPlugin -Plugin="C:\Path\To\ZipImporter\ZipImporter.uplugin" -Package="C:\Path\To\Output\ZipImporter" -TargetPlatforms=Win64
+```
+
+Arguments:
+
+- `RunUAT.bat` — the Unreal Automation Tool script from the engine version you are building for.
+- `-Plugin` — the path to `ZipImporter.uplugin`.
+- `-Package` — the output directory for the packaged plugin.
+- `-TargetPlatforms=Win64` — the Windows 64-bit target platform. Use another supported target platform when required.
+
+When the build finishes, check the `-Package` output directory. It should contain a ready-to-use `ZipImporter` folder with `ZipImporter.uplugin` and the required build files.
+
+To use the package in a project, copy the `ZipImporter` folder to:
+
+```text
+YourProject/Plugins/ZipImporter/
+```
+
+To install it into a specific engine installation, use that engine's plugin directory, for example:
+
+```text
+<UnrealEngine>/Engine/Plugins/Marketplace/ZipImporter/
+```
+
+Then open the project and enable the plugin through **Edit → Plugins** if it is not already enabled.
+
+**Important:** use `RunUAT.bat` from the Unreal Engine version you are targeting. A successful build for one engine version does not guarantee compatibility with other versions. If engine APIs have changed, the plugin source may need to be adapted.
